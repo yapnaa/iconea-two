@@ -1,10 +1,16 @@
 {% extends 'blog/base.html.twig' %}
 
+{% block stylesheets %}
+div.posts{float:left;height:200px;width:30%;border:solid 1px #738;margin:10px;padding:10px}
+{% endblock %}
+
 {% block body %}
 	{% for id, post in posts %}
+	<div class="posts">
 		<p><a href="{{ path('blog_show', {'id': id}) }}">ID {{ id }}</a></p>
 		<h3>{{ post.title }}</h3>
 		<p>{{ post.text }}</p>
 		<p>{{ post.date|date('H:i:s') }}</p>
+	</div>
 	{% endfor %}
 {% endblock %}
