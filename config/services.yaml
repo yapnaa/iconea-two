@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    hello_message: 'Hello from Saswata'
 
 services:
     # default configuration for services in *this* file
@@ -29,6 +30,10 @@ services:
 
     #App\Controller\BlogController: ['@App\Service\Greeting']
     #App\Service\Greeting: ['@monolog.logger']
+
+    App\Twig\AppExtension:
+        arguments:
+            $locale: '%locale%'
 
     # app.greeting:
     #     public: true
