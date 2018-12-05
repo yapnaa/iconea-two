@@ -8,29 +8,64 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class BlogController extends Controller
+/**
+ * @Route("/blog")
+ */
+class BlogController extends AbstractController
 {
-	/**
-	* @var Greeting
-	*/
-	private $greeting;
-	/**
-	* @var VeryBadDesign
-	*/
-	private $badDesign;
 
-	public function __construct(Greeting $greeting, VeryBadDesign $badDesign)
+	public function __construct(\Twig_Environment $twig)
 	{
-		$this->greeting = $greeting;
-		$this->badDesign = $badDesign;		
+		$this->twig = $twig;	
 	}
 
 	/**
-	* @Route("/blog", name="blog_index")
+	* @Route("/{name}", name="blog_index")
 	*/
-	public function index(Request $request)
+	public function index($name)
 	{
-		return $this->render('base.html.twig', ['message' => $this->greeting->greet($request->get('name')
-		)]);
+		$html = $this->twig->render(
+			'blog/index.html.twig',
+			[
+				'posts' => $this->session->get('posts')
+			]
+		);
+
+		return new Response($html);
+	}
+
+	/**
+	* @Route("/add", name="blog_add")
+	*/
+	public function add()
+	{
+		$posts = $this->session->get('posts');
+		$posts[uniqid()] = [
+			'title' => ' A random title - '.rand(1,1000),
+			'text' => ' Some random text nr - '.rand(1,1000),
+		];
+		$this->session->set('posts', $posts);
+	}
+
+	/**
+	* @Route("/show/{id}", name="blog_show")
+	*/
+	public function show()
+	{
+		$posts = $this->session->get('posts');
+
+		if(!$posts || !isset($posts[$id])) {
+			throw new NotFoundHttpException('Post not found');
+		}
+
+		$html = $this->twig->render(
+			'blog/post.html.twig',
+			[
+				'id' => $id,
+				'post' => $posts[$id],
+			]
+		);
+
+		return new Response($html);
 	}
 }
