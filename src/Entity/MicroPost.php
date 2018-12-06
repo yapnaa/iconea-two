@@ -19,7 +19,7 @@ class MicroPost
     /**
      * @ORM\Column(type="string", length=280, nullable=true)
      */
-    private $test;
+    private $text;
 
     /**
      * @ORM\Column(type="datetime")
@@ -31,14 +31,14 @@ class MicroPost
         return $this->id;
     }
 
-    public function getTest(): ?string
+    public function getText(): ?string
     {
-        return $this->test;
+        return $this->text;
     }
 
-    public function setTest(?string $test): self
+    public function setText(?string $text): self
     {
-        $this->test = $test;
+        $this->text = $text;
 
         return $this;
     }
