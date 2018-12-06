@@ -70,11 +70,37 @@ class MicroPostController extends AbstractController
 		$html = $this->twig->render(
 			'micro-post/index.html.twig',
 			[
-				'posts' => $this->microPostRepository->findAll()
+				'posts' => $this->microPostRepository->findBy([], ['id' => 'DESC'])
 			]
 		);
 
 		return new Response($html);
+	}
+
+	/**
+	* @Route("/edit/{id}", name="micro_post_edit")
+	*/
+	public function edit(MicroPost $microPost, Request $request)
+	{
+		$form = $this->formFactory->create(MicroPostType::class, $microPost);
+		$form->handleRequest($request);
+		
+		$microPost->setTime(new \DateTime());
+
+		if($form->isSubmitted() && $form->isValid()) {
+			# No need to call persist when making changes
+			# $this->entityManager->persist($microPost);
+			$this->entityManager->flush();
+
+			return new RedirectResponse($this->router->generate('micro_post_index'));
+		}
+
+		return new Response(
+			$this->twig->render(
+				'micro-post/add.html.twig',
+				['form' => $form->createView()]
+			)
+		);
 	}
 
 	/**
