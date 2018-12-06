@@ -1,5 +1,6 @@
 {% extends 'micro-post/base.html.twig' %}
 
 {% block body %}
+<a href="{{ path('micro_post_index') }}">&laquo; All Posts</a>
 {{ include('micro-post/raw-post.html.twig', { 'post': post }) }}
 {% endblock %}
