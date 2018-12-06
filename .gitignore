@@ -17,6 +17,6 @@
 ###< symfony/web-server-bundle ###
 /node_modules/
 yarn-error.log
-yarn.lock
-composer.lock
-*.lock
+/yarn.lock
+/composer.lock
+/*.lock
