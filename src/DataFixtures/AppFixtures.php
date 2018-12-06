@@ -15,7 +15,7 @@ class AppFixtures extends Fixture
         for ($i=0; $i < 10; $i++) { 
         	$microPost = new MicroPost();
         	$microPost->setText(' Some random text ' . rand(1, 100));
-        	$microPost->setTime(new \DateTime('2018-12-06'));
+        	$microPost->setTime(new \DateTime('2018-12-03'));
         	$manager->persist($microPost);
         }
 
