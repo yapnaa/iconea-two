@@ -7,8 +7,8 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class MicroPostVoter extends Voter
 {
-	const EDIT = "edit";
-	const DELETE = "delete";
+	const EDIT = 'edit';
+	const DELETE = 'delete';
 
 	protected function supports($attribute, $subject)
 	{
@@ -16,7 +16,7 @@ class MicroPostVoter extends Voter
 			return false;
 		}
 
-		if (!$subject instanceOf MicroPost) {
+		if (!$subject instanceof MicroPost) {
 			return false;
 		}
 
@@ -30,8 +30,8 @@ class MicroPostVoter extends Voter
 			return false;
 		}
 
-		/** @var Micropost $micropost */
+		/** @var MicroPost $microPost */
 		$microPost = $subject;
-		return $microPost->getUser()->getId() === $authenticatedUser->getId());
+		return $microPost->getUser()->getId() === $authenticatedUser->getId();
 	}
 }
