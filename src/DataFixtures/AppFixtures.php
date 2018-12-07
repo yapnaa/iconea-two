@@ -10,48 +10,88 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
-    /**
-     * @var UserPasswordEncoderInterface
-     */
-    private $passwordEncoder;
+	private const USERS = [
+		[
+			'username' => 'saswatab',
+			'email' => 'saswata@moviloglobal.com',
+			'password' => 'sas123',
+			'fullName' => 'Saswata Banerjee',
+		],
+		[
+			'username' => 'rob_smith',
+			'email' => 'rob_smith@smith.com',
+			'password' => 'rob12345',
+			'fullName' => 'Rob Smith',
+		],
+		[
+			'username' => 'marry_gold',
+			'email' => 'marry_gold@gold.com',
+			'password' => 'marry12345',
+			'fullName' => 'Marry Gold',
+		],
+	];
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
-    {
-        $this->passwordEncoder = $passwordEncoder;
-    }
+	private const POST_TEXT = [
+		'Hello, how are you?',
+		'It\'s nice sunny weather today',
+		'I need to buy some ice cream!',
+		'I wanna buy a new car',
+		'There\'s a problem with my phone',
+		'I need to go to the doctor',
+		'What are you up to today?',
+		'Did you watch the game yesterday?',
+		'How was your day?'
+	];
+	/**
+	 * @var UserPasswordEncoderInterface
+	 */
+	private $passwordEncoder;
 
-    public function load(ObjectManager $manager)
-    {
-        $this->loadUsers($manager);
-        $this->loadMicroPosts($manager);
-    }
+	public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+	{
+		$this->passwordEncoder = $passwordEncoder;
+	}
 
-    private function loadMicroPosts(ObjectManager $manager)
-    {
-        // $product = new Product();
-        // $manager->persist($product);
-        for ($i=0; $i < 10; $i++) { 
-        	$microPost = new MicroPost();
-        	$microPost->setText(' Some random text ' . rand(1, 100));
-        	$microPost->setTime(new \DateTime('2018-12-03'));
-            $microPost->setUser($this->getReference('saswatab'));
-        	$manager->persist($microPost);
-        }
+	public function load(ObjectManager $manager)
+	{
+		$this->loadUsers($manager);
+		$this->loadMicroPosts($manager);
+	}
 
-        $manager->flush();
-    }
+	private function loadMicroPosts(ObjectManager $manager)
+	{
+		// $product = new Product();
+		// $manager->persist($product);
+		for ($i=0; $i < 30; $i++) { 
+			$microPost = new MicroPost();
+			$microPost->setText(
+				self::POST_TEXT[rand(0, count(self::POST_TEXT) - 1)]
+			);
+			$date = new \DateTime();
+			$date->modify('-'.rand(0, 10).' day');
+			$microPost->setTime($date);
+			$microPost->setUser($this->getReference(
+				self::USERS[rand(0, count(self::USERS) - 1)]['username']
+			));
+			$manager->persist($microPost);
+		}
 
-    private function loadUsers(ObjectManager $manager)
-    {
-        $user = new User();
-        $user->setUsername('saswatab');
-        $user->setFullname('Saswata Banerjee');
-        $user->setEmail('saswata@moviloglobal.com');
-        $user->setPassword($this->passwordEncoder->encodePassword($user, 'saswata123'));
+		$manager->flush();
+	}
 
-        $this->addReference('saswatab', $user);
+	private function loadUsers(ObjectManager $manager)
+	{
+		foreach (self::USERS as $userData) {
+			$user = new User();
+			$user->setUsername($userData['username']);
+			$user->setFullname($userData['fullName']);
+			$user->setEmail($userData['email']);
+			$user->setPassword($this->passwordEncoder->encodePassword($user, $userData['password']));
 
-        $manager->persist($user);
-        $manager->flush();
-    }
+			$this->addReference($userData['username'], $user);
+
+			$manager->persist($user);
+		}
+		$manager->flush();
+	}
 }
