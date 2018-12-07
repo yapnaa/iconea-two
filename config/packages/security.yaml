@@ -34,7 +34,7 @@ security:
                 #csrf_parameter: _csrf_token
             logout:
                 path: security_logout
-                target: micro_post_index
+                target: security_login
             # https://symfony.com/doc/current/security/form_login_setup.html
 
     # Easy way to control access for large sections of your site

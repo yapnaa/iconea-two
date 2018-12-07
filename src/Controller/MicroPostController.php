@@ -100,8 +100,9 @@ class MicroPostController extends AbstractController
 	}
 
 	/**
-	* @Route("/edit/{id}", name="micro_post_edit")
-	*/
+	 * @Route("/edit/{id}", name="micro_post_edit")
+	 * @Security("is_granted('edit', microPost)", message="Access denied")
+	 */
 	public function edit(MicroPost $microPost, Request $request)
 	{
 		#$this->denyUnlessGranted('edit', $microPost);
@@ -119,6 +120,7 @@ class MicroPostController extends AbstractController
 			# No need to call persist when making changes
 			# $this->entityManager->persist($microPost);
 			$this->entityManager->flush();
+			$this->flashBag->add('notice', 'Micro Post was edited.');
 
 			return new RedirectResponse($this->router->generate('micro_post_index'));
 		}
@@ -157,9 +159,6 @@ class MicroPostController extends AbstractController
 		$form = $this->formFactory->create(MicroPostType::class, $microPost);
 		$form->handleRequest($request);
 
-		if($form->get('cancel')->isClicked()) {
-			return new RedirectResponse($this->router->generate('micro_post_index'));
-		}
 		if($form->isSubmitted() && $form->isValid()) {
 
 			$this->entityManager->persist($microPost);
