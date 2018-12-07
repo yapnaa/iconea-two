@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 use App\Entity\MicroPost;
+use App\Entity\User;
 use App\Form\MicroPostType;
 use App\Repository\MicroPostRepository;
 
@@ -177,6 +178,22 @@ class MicroPostController extends AbstractController
 				['form' => $form->createView()]
 			)
 		);
+	}
+
+	/**
+	* @Route("/user/{username}", name="micro_post_user")
+	*/
+	public function userPosts(User $userWithPosts)
+	{
+		$html = $this->twig->render(
+			'micro-post/index.html.twig',
+			[
+				#'posts' => $this->microPostRepository->findBy(['user' => $userWithPosts], ['time' => 'DESC'])
+				'posts' => $userWithPosts->getPosts() #Doctrine Lazy loading
+			]
+		);
+
+		return new Response($html);
 	}
 
 	/**
