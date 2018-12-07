@@ -5,10 +5,6 @@
 <div class="alert alert-success">{{ message }}</div>
 {% endfor %}
 
-<small class="d-block text-right mt-3">
-    <a href="{{ path('micro_post_add') }}">Add New</a>
-</small>
-
 <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
 {% for post in posts %}
 	{{ include('micro-post/raw-post.html.twig', { 'post': post }) }}
