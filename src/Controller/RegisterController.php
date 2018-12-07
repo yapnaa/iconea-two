@@ -30,7 +30,7 @@ class RegisterController extends Controller
 			$entityManager->persist($user);
 			$entityManager->flush();
 
-			$this->redirect('micro_post_index');
+			return $this->redirectToRoute('micro_post_index');
 		}
 
 		return $this->render('register/register.html.twig', [
