@@ -58,18 +58,14 @@ class User implements UserInterface, \Serializable
         return $this->id;
     }
 
-    public function setUsername(string $username): self
+    public function setUsername(string $username): void
     {
         $this->username = $username;
-
-        return $this;
     }
 
     public function setPassword(string $password): void
     {
         $this->password = $password;
-
-        return $this;
     }
 
     /**
@@ -78,8 +74,6 @@ class User implements UserInterface, \Serializable
     public function setPlainPassword($plainPassword): void
     {
         $this->plainPassword = $plainPassword;
-
-        return $this;
     }
 
     public function getEmail(): ?string
