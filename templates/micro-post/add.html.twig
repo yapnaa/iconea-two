@@ -1,6 +1,8 @@
 {% extends 'micro-post/base.html.twig' %}
 
 {% block body %}
+<a href="{{ path('micro_post_index') }}">&laquo; All Posts</a>
+<p></p>
 	{{ form_start(form) }}
 	{{ form_widget(form) }}
 	{{ form_end(form) }}

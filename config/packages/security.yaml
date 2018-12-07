@@ -29,7 +29,9 @@ security:
                 #always_use_default_target_path: false
                 #use_referer: true
                 #failure_path: security_failure
-
+                #username_parameter: _username
+                #password_parameter: _password
+                #csrf_parameter: _csrf_token
             logout:
                 path: security_logout
                 target: micro_post_index

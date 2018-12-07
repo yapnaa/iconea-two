@@ -137,6 +137,7 @@ class MicroPostController extends AbstractController
 		if($form->isSubmitted() && $form->isValid()) {
 			$this->entityManager->persist($microPost);
 			$this->entityManager->flush();
+			$this->flashBag->add('notice', 'Micro Post was added.');
 
 			return new RedirectResponse($this->router->generate('micro_post_index'));
 		}
