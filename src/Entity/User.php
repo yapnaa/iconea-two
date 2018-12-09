@@ -64,7 +64,7 @@ class User implements UserInterface, \Serializable
     private $roles;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\MicroPost", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\MicroPost", mappedBy="user")
      */
     private $posts;
 
@@ -76,21 +76,21 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="followers")
      * @ORM\JoinTable(name="following", 
-     *      joinColumns = {
-     *          @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *      joinColumns={
+     *          @ORM\JoinColumn(name="user_id", referencedColumnName="id") 
      *      },
-     *      joinColumns = {
-                @ORM\JoinColumn(name="following_user_id", referencedColumnName="id")
+     *      inverseJoinColumns={
+     *          @ORM\JoinColumn(name="following_user_id", referencedColumnName="id")
      *      }
-     *  )
+     * )
      */
     private $following;
 
     public function __construct()
     {
         $this->posts = new ArrayCollection();
-        $this->following = new ArrayCollection();
         $this->followers = new ArrayCollection();
+        $this->following = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -157,6 +157,24 @@ class User implements UserInterface, \Serializable
     {
         return $this->posts;
     }
+    
+    /**
+     * @return Collection
+     */
+    public function getFollowers()
+    {
+        return $this->followers;
+    }
+    
+    /**
+     * @return Collection
+     */
+    public function getFollowing()
+    {
+        return $this->following;
+    }
+    
+
 
     public function getPassword()
     {
@@ -179,16 +197,6 @@ class User implements UserInterface, \Serializable
     public function getUsername()
     {
         return $this->username;
-    }
-
-    public function getFollowers()
-    {
-        return $this->followers;
-    }
-
-    public function getFollowing()
-    {
-        return $this->following;
     }
 
     public function eraseCredentials()

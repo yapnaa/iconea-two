@@ -186,10 +186,11 @@ class MicroPostController extends AbstractController
 	public function userPosts(User $userWithPosts)
 	{
 		$html = $this->twig->render(
-			'micro-post/index.html.twig',
+			'micro-post/user-posts.html.twig',
 			[
-				#'posts' => $this->microPostRepository->findBy(['user' => $userWithPosts], ['time' => 'DESC'])
-				'posts' => $userWithPosts->getPosts() #Doctrine Lazy loading
+				'posts' => $this->microPostRepository->findBy(['user' => $userWithPosts], ['time' => 'DESC']),
+				#'posts' => $userWithPosts->getPosts(), #Doctrine Lazy loading
+				'user' => $userWithPosts
 			]
 		);
 
