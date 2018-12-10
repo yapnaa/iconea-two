@@ -4,6 +4,7 @@ use App\Entity\MicroPost;
 use App\Entity\User;
 use App\Form\MicroPostType;
 use App\Repository\MicroPostRepository;
+use App\Repository\UserRepository;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -89,12 +90,14 @@ class MicroPostController extends AbstractController
 	/**
 	* @Route("/", name="micro_post_index")
 	*/
-	public function index(TokenStorageInterface $tokenStorage)
+	public function index(TokenStorageInterface $tokenStorage, UserRepository $UserRepository)
 	{
 		$currentUser = $tokenStorage->getToken()->getUser();
+		$usersToFollow = [];
 
 		if($currentUser instanceof User) {
 			$posts = $this->microPostRepository->findAllByUsers($currentUser->getFollowing());
+			$usersToFollow = count($posts) === 0 ? $UserRepository->findAllWithMoreThan5PostsExceptUser($currentUser) : [];
 		} else {
 			$posts = $this->microPostRepository->findBy(
 				[],
@@ -104,7 +107,8 @@ class MicroPostController extends AbstractController
 		$html = $this->twig->render(
 			'micro-post/index.html.twig',
 			[
-				'posts' => $posts
+				'posts' => $posts,
+				'usersToFollow' => $usersToFollow
 			]
 		);
 
