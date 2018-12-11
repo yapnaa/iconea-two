@@ -1,5 +1,6 @@
 <?php
 namespace App\Event;
+use App\Mailer\Mailer;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
