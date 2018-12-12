@@ -8,19 +8,93 @@
 			</trans-unit>
 			<trans-unit id="menu.signout">
 				<source>Sign out</source>
-				<target>Deconnexion</target>
+				<target>Déconnexion</target>
 			</trans-unit>
 			<trans-unit id="menu.register">
 				<source>Register</source>
-				<target>Regitere</target>
+				<target>Registre</target>
 			</trans-unit>
 			<trans-unit id="menu.addnew">
 				<source>Add new</source>
-				<target>Add new</target>
+				<target>Ajouter nouveau</target>
 			</trans-unit>
 			<trans-unit id="menu.notifications">
 				<source>Notifications</source>
 				<target>Notifications</target>
+			</trans-unit>
+			<trans-unit id="register.username">
+				<source>Username</source>
+				<target>Nom d'utilisateur</target>
+			</trans-unit>
+			<trans-unit id="register.email">
+				<source>Email</source>
+				<target>Email</target>
+			</trans-unit>
+			<trans-unit id="register.save">
+				<source>Save</source>
+				<target>Enregistrer</target>
+			</trans-unit>
+			<trans-unit id="register.cancel">
+				<source>Cancel</source>
+				<target>Annuler</target>
+			</trans-unit>
+			<trans-unit id="post.like">
+				<source>Like</source>
+				<target>Aimer</target>
+			</trans-unit>
+			<trans-unit id="post.unlike">
+				<source>Unlike</source>
+				<target>Pas comme</target>
+			</trans-unit>
+			<trans-unit id="post.edit">
+				<source>Edit</source>
+				<target>Editer</target>
+			</trans-unit>
+			<trans-unit id="post.delete">
+				<source>Delete</source>
+				<target>Effacer</target>
+			</trans-unit>
+			<trans-unit id="user.followers">
+				<source>Followers</source>
+				<target>Suiveurs</target>
+			</trans-unit>
+			<trans-unit id="user.following">
+				<source>Following</source>
+				<target>Suivants</target>
+			</trans-unit>
+			<trans-unit id="register.password">
+				<source>Password</source>
+				<target>Mot de passe</target>
+			</trans-unit>
+			<trans-unit id="register.repeat">
+				<source>Repeat Password</source>
+				<target>Mot de passe repeat</target>
+			</trans-unit>
+			<trans-unit id="register.fullname">
+				<source>Full name</source>
+				<target>Nom et prenom</target>
+			</trans-unit>
+			<trans-unit id="register.agreetos">
+				<source>I agree to the terms of services</source>
+				<target>J'accepte les conditions d'utilisation</target>
+			</trans-unit>
+			<trans-unit id="posts.recents">
+				<source>Recent updates</source>
+				<target>Mises à jour récentes</target>
+			</trans-unit>
+
+
+			<trans-unit id="notif.markread">
+				<source>Mark all as read</source>
+				<target>Tout marquer comme lu</target>
+			</trans-unit>
+			<trans-unit id="notif.unread">
+				<source>Unread Notifications</source>
+				<target>Notifications non lues</target>
+			</trans-unit>
+			<trans-unit id="notif.read">
+				<source>Read</source>
+				<target>Lis</target>
 			</trans-unit>
 		</body>
 	</file>

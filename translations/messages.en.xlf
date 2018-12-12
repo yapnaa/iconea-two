@@ -4,7 +4,7 @@
 		<body>
 			<trans-unit id="menu.signin">
 				<source>Sign in</source>
-				<target>Sign in</target>
+				<target>Sign on</target>
 			</trans-unit>
 			<trans-unit id="menu.signout">
 				<source>Sign out</source>

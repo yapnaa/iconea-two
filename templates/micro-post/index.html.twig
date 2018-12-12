@@ -11,7 +11,7 @@
 		<a href="{{ path('micro_post_user', {'username':user.username}) }}">@{{ user.username }}</a>
 	{% endfor %}
 {% else %}
-	<h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
+	<h6 class="border-bottom border-gray pb-2 mb-0">{{'Recent updates'|trans}}</h6>
 	{% for post in posts %}
 		{{ include('micro-post/raw-post.html.twig', { 'post': post }) }}
 
