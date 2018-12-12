@@ -17,7 +17,7 @@
         <ul class="navbar-nav px-3">
             {% if is_granted('ROLE_USER') %}
                 <li class="nav-item text-nowrap">
-                    <a class="nav-link" href="{{ path('micro_post_add') }}">Add new</a>
+                    <a class="nav-link" href="{{ path('micro_post_add') }}">{{ 'Add new'|trans }}</a>
                 </li>
             {% endif %}
         </ul>
@@ -27,7 +27,7 @@
         <ul class="navbar-nav px-3">
             {% if is_granted('ROLE_USER') %}
                 <li class="nav-item text-nowrap border-right border-secondary">
-                    <a class="nav-link" href="{{ path('notification_all') }}">Notifications <span class="badge badge-light" id="notification-count"><i class="fa fa-circle fa-circle-o-notch fa-spin"></i></span></a>
+                    <a class="nav-link" href="{{ path('notification_all') }}">{{ 'Notifications'|trans }} <span class="badge badge-light" id="notification-count"><i class="fa fa-circle fa-circle-o-notch fa-spin"></i></span></a>
                 </li>
                 <li class="nav-item text-nowrap">
                     <a class="nav-link"
@@ -36,16 +36,16 @@
                 <li class="nav-item text-nowrap">
                     <a class="nav-link"
                        href="{{ logout_path() }}"
-                       href="{{ path('security_logout') }}">Sign out</a>
+                       href="{{ path('security_logout') }}">{{ 'Sign out'|trans }}</a>
                 </li>
             {% else %}
                 <li class="nav-item text-nowrap">
                     <a class="nav-link"
-                       href="{{ path('user_register') }}">Register</a>
+                       href="{{ path('user_register') }}">{{ 'Register'|trans }}</a>
                 </li>
                 <li class="nav-item text-nowrap">
                     <a class="nav-link"
-                       href="{{ path('security_login') }}">Sign in</a>
+                       href="{{ path('security_login') }}">{{ 'Sign in'|trans }}</a>
                 </li>
             {% endif %}
         </ul>

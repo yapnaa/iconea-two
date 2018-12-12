@@ -155,7 +155,7 @@ class User implements AdvancedUserInterface, \Serializable
         $this->fullName = $fullName;
     }
 
-    public function getEnabled(): ?string
+    public function getEnabled()
     {
         return $this->enabled;
     }

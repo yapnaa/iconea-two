@@ -38,7 +38,7 @@ class NotificationController extends Controller
 	 */
 	public function notifications()
 	{
-		return $this->render('notification/notifications.html.twig', ['notifications' => $this->notificationRepository->findBy(['seen' => false, 'user' => $this->getUser()])]);
+		return $this->render('notification/notifications.html.twig', ['notifications' => $this->notificationRepository->findBy(['seen' => false, 'user' => $this->getUser()],['id' => 'DESC'])]);
 	}
 
 	/**

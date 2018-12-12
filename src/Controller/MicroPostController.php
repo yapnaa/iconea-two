@@ -34,6 +34,10 @@ class MicroPostController extends AbstractController
 	 */
 	private $twig;
 	/**
+	 * @var SessionInterface
+	 */
+	private $session;
+	/**
 	 * @var MicroPostRepository
 	 */
 	private $microPostRepository;
@@ -72,6 +76,7 @@ class MicroPostController extends AbstractController
 		\Twig_Environment $twig,
 		MicroPostRepository $microPostRepository,
 		FormFactoryInterface $formFactory,
+		SessionInterface $session,
 		EntityManagerInterface $entityManager,
 		RouterInterface $router,
 		FlashBagInterface $flashBag,
@@ -79,6 +84,7 @@ class MicroPostController extends AbstractController
 	)
 	{
 		$this->twig = $twig;
+		$this->session = $session;
 		$this->microPostRepository = $microPostRepository;
 		$this->formFactory = $formFactory;
 		$this->entityManager = $entityManager;
@@ -138,7 +144,7 @@ class MicroPostController extends AbstractController
 			$this->entityManager->flush();
 			$this->flashBag->add('notice', 'Micro Post was edited.');
 
-			return new RedirectResponse($this->router->generate('micro_post_index'));
+			return new RedirectResponse($this->router->generate('micro_post_show', ['id' => $microPost->getId()]));
 		}
 
 		return new Response(
@@ -216,17 +222,17 @@ class MicroPostController extends AbstractController
 	*/
 	public function show($id)
 	{
-		$posts = $this->session->get('posts');
+		$post = $this->microPostRepository->find($id);
 
-		if(!$posts || !isset($posts[$id])) {
+		if(!$post) {
 			throw new NotFoundHttpException('Post not found');
 		}
 
 		$html = $this->twig->render(
-			'blog/post.html.twig',
+			'micro-post/post.html.twig',
 			[
 				'id' => $id,
-				'post' => $posts[$id],
+				'post' => $post,
 			]
 		);
 

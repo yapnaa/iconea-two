@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\NotificationRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"like" = "LikeNotification"})
+ * @ORM\DiscriminatorMap({"like" = "LikeNotification", "follow" = "FollowNotification"})
  */
 abstract class Notification
 {

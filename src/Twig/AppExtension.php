@@ -2,6 +2,7 @@
 
 namespace App\Twig;
 use App\Entity\LikeNotification;
+use App\Entity\FollowNotification;
 
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
@@ -40,8 +41,13 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
 
 	public function getTests()
 	{
-		return [new \Twig_SimpleTest('like', 
-			function ($obj) { return $obj instanceof LikeNotification;}
-		)];
+		return [
+			new \Twig_SimpleTest('like', 
+				function ($obj) { return $obj instanceof LikeNotification;}
+			),
+			new \Twig_SimpleTest('follow',
+				function ($obj) { return $obj instanceof FollowNotification;}
+			)
+		];
 	}
 }

@@ -11,9 +11,16 @@
 			{% for notification in notifications %}
 			<li class="list-group-item">
 				<a href="{{ path('notification_acknowledge', {'id': notification.id}) }}" class="btn btn-sm btn-primary float-right">Read</a>
-				{% if notification is like %}
+				{% if notification is follow %}
+				<a href="{{ path('micro_post_user', {'username': notification.followedBy.username}) }}">{{ notification.followedBy.fullName }}</a> followed you.
+				{% endif %}
+				{% if notification is like and notification.likedBy.username != app.user.username %}
 				<a href="{{ path('micro_post_user', {'username': notification.likedBy.username}) }}">{{ notification.likedBy.fullName }}</a>
 				likes your
+				<a href="{{ path('micro_post_post', {'id': notification.microPost.id}) }}">post</a>.
+				{% endif %}
+				{% if notification is like and notification.likedBy.username == app.user.username %}
+				<a href="{{ path('micro_post_user', {'username': notification.likedBy.username}) }}">You</a> like your own
 				<a href="{{ path('micro_post_post', {'id': notification.microPost.id}) }}">post</a>.
 				{% endif %}
 			</li>
