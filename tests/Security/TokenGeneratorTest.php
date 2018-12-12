@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * 
  */
-class ClassName extends TestCase
+class TokenGeneratorTest extends TestCase
 {
 	public function testTokenGeneration()
 	{
