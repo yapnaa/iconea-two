@@ -56,11 +56,11 @@
 			</trans-unit>
 			<trans-unit id="user.followers">
 				<source>Followers</source>
-				<target>Suiveurs</target>
+				<target>{0}Non Suiveur|{1}Suiveur|]1,Inf[ %count% Suiveurs</target>
 			</trans-unit>
 			<trans-unit id="user.following">
 				<source>Following</source>
-				<target>Suivants</target>
+				<target>{0}Non Suivant|{1}Suivant|]1,Inf[ %count% Suivants</target>
 			</trans-unit>
 			<trans-unit id="user.follow">
 				<source>Follow</source>
