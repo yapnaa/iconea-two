@@ -62,6 +62,14 @@
 				<source>Following</source>
 				<target>Suivants</target>
 			</trans-unit>
+			<trans-unit id="user.follow">
+				<source>Follow</source>
+				<target>Suivre</target>
+			</trans-unit>
+			<trans-unit id="user.unfollow">
+				<source>Unfollow</source>
+				<target>Non suivi</target>
+			</trans-unit>
 			<trans-unit id="register.password">
 				<source>Password</source>
 				<target>Mot de passe</target>
