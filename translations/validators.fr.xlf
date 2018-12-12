@@ -3,8 +3,8 @@
 	<file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
 		<body>
 			<trans-unit id="register.emailused">
-				<source>This e-mail is already used</source>
-				<target>Cet e-mail est deja pris</target>
+				<source>This email is already used</source>
+				<target>Cet email est deja pris</target>
 			</trans-unit>
 			<trans-unit id="register.usernameused">
 				<source>This username is already used</source>

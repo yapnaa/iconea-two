@@ -54,7 +54,7 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      * @Assert\NotBlank()
-     * @Assert\Length(min=12, max=4096)
+     * @Assert\Length(min=2, max=4096)
      */
     private $fullName;
 
